@@ -20,15 +20,17 @@ public class CategoryValidator extends Validator {
         checkNameConstraints();
     }
 
-    private void checkNameConstraints() {
-        final var name = this.category.getName();
-        if (name == null) {
-            this.validationHandler().append(new Error("'name' should not be null"));
-        }
+  private void checkNameConstraints() {
+    final var name = this.category.getName();
+    if (name == null) {
+      this.validationHandler().append(new Error("'name' should not be null"));
+      return;
+    }
 
-        if (name.isBlank()) {
-            this.validationHandler().append(new Error("'name' should not be empty"));
-        }
+    if (name.isBlank()) {
+      this.validationHandler().append(new Error("'name' should not be empty"));
+      return;
+    }
 
         final int length = name.trim().length();
         if (length > NAME_MAX_LENGTH || length < NAME_MIN_LENGTH) {

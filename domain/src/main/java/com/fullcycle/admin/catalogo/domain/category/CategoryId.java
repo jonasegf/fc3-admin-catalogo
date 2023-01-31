@@ -37,4 +37,9 @@ public class CategoryId extends Identifier {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String getValue() {
+        return value;
+    }
 }
