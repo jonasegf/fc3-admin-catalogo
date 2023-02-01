@@ -20,10 +20,12 @@ import com.fullcycle.admin.catalogo.domain.category.CategoryId;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
 import java.util.Objects;
 import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,6 +35,11 @@ public class UpdateCategoryUseCaseTest {
 
   @Mock
   private CategoryGateway categoryGateway;
+
+  @BeforeEach
+  void cleanUp(){
+    Mockito.reset(categoryGateway);
+  }
 
   // 1. Teste do caminho feliz
   // 2. Teste passando uma propriedade inválida (name)

@@ -12,10 +12,12 @@ import static org.mockito.Mockito.when;
 
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import java.util.Objects;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,6 +26,11 @@ public class CreateCategoryUseCaseTest {
   private DefaultCreateCategoryUseCase useCase;
   @Mock
   private CategoryGateway categoryGateway;
+
+  @BeforeEach
+  void cleanUp(){
+    Mockito.reset(categoryGateway);
+  }
 
   // 1. Teste do caminho feliz
   // 2. Teste passando uma propriedade inválida (name)
