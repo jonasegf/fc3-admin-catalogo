@@ -41,7 +41,7 @@ public class DeleteCategoryUseCaseTest {
 
     Assertions.assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
-    Mockito.verifyNoInteractions(categoryGateway, times(1).deleteById(eq(expectedId)));
+    Mockito.verify(categoryGateway, times(1)).deleteById(eq(expectedId));
 
   }
 
@@ -53,8 +53,7 @@ public class DeleteCategoryUseCaseTest {
 
     Assertions.assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
-    Mockito.verifyNoInteractions(categoryGateway, times(1).deleteById(eq(expectedId)));
-
+    Mockito.verify(categoryGateway, times(1)).deleteById(eq(expectedId));
   }
 
   @Test
@@ -68,7 +67,7 @@ public class DeleteCategoryUseCaseTest {
     Assertions.assertThrows(IllegalStateException.class,
         () -> useCase.execute(expectedId.getValue()));
 
-    Mockito.verifyNoInteractions(categoryGateway, times(1).deleteById(eq(expectedId)));
+    Mockito.verify(categoryGateway, times(1)).deleteById(eq(expectedId));
   }
 
 }
