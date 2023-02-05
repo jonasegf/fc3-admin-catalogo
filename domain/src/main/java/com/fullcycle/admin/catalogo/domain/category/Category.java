@@ -2,10 +2,9 @@ package com.fullcycle.admin.catalogo.domain.category;
 
 import com.fullcycle.admin.catalogo.domain.AggregateRoot;
 import com.fullcycle.admin.catalogo.domain.validation.ValidationHandler;
-
 import java.time.Instant;
 
-public class Category extends AggregateRoot<CategoryId> implements Cloneable{
+public class Category extends AggregateRoot<CategoryId> implements Cloneable {
   private String name;
   private String description;
   private boolean active;
@@ -13,9 +12,12 @@ public class Category extends AggregateRoot<CategoryId> implements Cloneable{
   private Instant updatedAt;
   private Instant deletedAt;
 
-  private Category(final CategoryId anId, final String AName, final String aDescription,
+  private Category(final CategoryId anId,
+                   final String AName,
+                   final String aDescription,
                    final boolean isActive,
-                   final Instant aCreationDate, final Instant anUpdateDate,
+                   final Instant aCreationDate,
+                   final Instant anUpdateDate,
                    final Instant aDeleteDate) {
     super(anId);
     this.name = AName;
@@ -32,6 +34,36 @@ public class Category extends AggregateRoot<CategoryId> implements Cloneable{
     final var now = Instant.now();
     final var deletedAt = isActive ? null : Instant.now();
     return new Category(id, aName, aDescription, isActive, now, now, deletedAt);
+  }
+
+  public static Category with(
+      final CategoryId anId,
+      final String name,
+      final String description,
+      final boolean active,
+      final Instant createdAt,
+      final Instant updatedAt,
+      final Instant deletedAt
+  ) {
+    return new Category(
+        anId,
+        name,
+        description,
+        active,
+        createdAt,
+        updatedAt,
+        deletedAt);
+  }
+
+  public static Category with(final Category aCategory) {
+    return with(
+        aCategory.getId(),
+        aCategory.name,
+        aCategory.description,
+        aCategory.isActive(),
+        aCategory.createdAt,
+        aCategory.updatedAt,
+        aCategory.deletedAt);
   }
 
   @Override
