@@ -3,6 +3,7 @@ package com.fullcycle.admin.catalogo.domain.category;
 import com.fullcycle.admin.catalogo.domain.AggregateRoot;
 import com.fullcycle.admin.catalogo.domain.validation.ValidationHandler;
 import java.time.Instant;
+import java.util.Objects;
 
 public class Category extends AggregateRoot<CategoryId> implements Cloneable {
   private String name;
@@ -23,8 +24,8 @@ public class Category extends AggregateRoot<CategoryId> implements Cloneable {
     this.name = AName;
     this.description = aDescription;
     this.active = isActive;
-    this.createdAt = aCreationDate;
-    this.updatedAt = anUpdateDate;
+    this.createdAt = Objects.requireNonNull(aCreationDate, "'createdAt' cannot be null");
+    this.updatedAt = Objects.requireNonNull(anUpdateDate, "'updatedAt' cannot be null");
     this.deletedAt = aDeleteDate;
   }
 
